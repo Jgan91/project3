@@ -1,0 +1,3 @@
+<% game.find_players.each do |player| %>
+  <div class="player <%= "stay" if player.action == 1 %>" id="<%= player.id %>"><%= player.username %></div>
+<% end %>

@@ -1,0 +1,17 @@
+<div id="user-<%= @current_user.id %>" class="container-action hidden">
+  <div class="game-actions" id="user-<%= @current_user.username %>">
+
+    <div class="hit">
+      <button class="action" id="hit" data-behavior="room_speaker">Hit!</button>
+    </div>
+
+    <div class="stay">
+      <button class="action" id="stay" data-behavior="room_speaker">Stay!!</button>
+    </div>
+
+  </div>
+
+  <div id="pocket-button">
+    <%= button_to "Pocket Cards", card_path(user_id: @current_user.id), method: :get, id: :pocket_cards, remote: true %>
+  </div>
+</div>

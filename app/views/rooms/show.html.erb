@@ -1,0 +1,15 @@
+<div id="game_cards">
+  <%= render @game_cards %>
+</div>
+
+<div class="history">
+  <div id="messages">
+    <%= render @messages %>
+  </div>
+</div>
+
+<div id="cards">
+  <%= render @cards if @game.started %>
+</div>
+
+<%= render partial: "partials/game_actions" %>

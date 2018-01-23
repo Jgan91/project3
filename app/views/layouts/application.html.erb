@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BlackJack</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <% if @game && !@game.started %>
+      <nav>
+        <div class="pregame">
+          <button id="join" data-behavior="room_speaker" class="btn">Join</button>
+          <button id="start-game" data-behavior="room_speaker" class="btn">Start Game</button>
+        </div>
+      </nav>
+    <% end %>
+
+    <% if @current_user %>
+      <li id="sign-out"><%= link_to "Sign Out", logout_path, method: :delete %></li>
+    <% end %>
+
+    <%= yield %>
+  </body>
+</html>
