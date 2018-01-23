@@ -12,7 +12,7 @@ class RoomChannel < ApplicationCable::Channel
 
   def speak(data)
     @game = Game.find_by( started: false ) || Game.find( current_user.game.id )
-    
+
     client_action = data[ "message" ]
     current_user.user_action( client_action[ "user_action" ], current_user.id ) if client_action[ "user_action" ]
 

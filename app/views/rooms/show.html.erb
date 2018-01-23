@@ -13,3 +13,10 @@
     <%= render @messages %>
   </div>
 </div>
+
+<div id="cards">
+  <%= render @cards if @game.started %>
+</div>
+
+
+<%= render partial: "partials/game_actions" %>

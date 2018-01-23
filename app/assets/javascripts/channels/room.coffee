@@ -40,4 +40,4 @@ $( document ).on "click", "[data-behavior~=room_speaker]", ( event ) ->
     console.log "User STAY"
     App.room.speak { "user_action": "stay" }
 
-    event.preventDefault()
+event.preventDefault()
