@@ -14,7 +14,14 @@ class User < ApplicationRecord
   end
 
   def hit
+<<<<<<< HEAD
 
+=======
+    Message.create! content: "#{ username }: Hit"
+    p "Self:", self
+    self.cards << cards.delete( cards.order( "random()" ).limit(1) )
+    p self.cards
+>>>>>>> a32a9bd6422acca1da5e874b9b1064bf45c87311
     # current_user.cards << cards.delete( cards.order( "random()" ).limit(1) )
   end
 
