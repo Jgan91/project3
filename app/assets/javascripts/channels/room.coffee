@@ -7,6 +7,7 @@ App.room = App.cable.subscriptions.create "RoomChannel",
     console.log data
     $( "#messages" ).prepend data[ "message" ]
     $( "#players" ).html data[ "player" ]
+    $( "#game_cards" ).append data[ "game_card" ]
     if data[ "start_game" ]
       console.log data
       $( ".starting-hand" ).fadeIn()
