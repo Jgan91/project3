@@ -15,7 +15,10 @@ class RoomChannel < ApplicationCable::Channel
     p '*****************CLIENT_ACTION*****************', client_action
     @game = Game.find_by( started: false ) || Game.find( current_user.game.id )
     current_user.user_action( client_action[ "user_action" ] ) if client_action[ "user_action" ]
+<<<<<<< HEAD
 
+=======
+>>>>>>> 056cfa35c263169b5f1a5715f31a2ea71e15e2ee
 
     if client_action["join"]
       @game.add_player( current_user )
@@ -23,7 +26,7 @@ class RoomChannel < ApplicationCable::Channel
       start_game( @game )
     elsif @game.started
       @game = Game.find( @game.id )
-      game_play( @game )
+      # game_play( @game )
     end
   end
 

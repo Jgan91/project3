@@ -34,6 +34,8 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'capistrano-rails', group: :development
 gem 'jquery-rails'
 gem 'faraday'
+gem 'sprockets'
+gem 'sprockets-es6'
 
 
 group :development, :test do
