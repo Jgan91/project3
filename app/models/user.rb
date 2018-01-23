@@ -16,11 +16,9 @@ class User < ApplicationRecord
   def hit( player_id )
     Message.create! content: "#{ username }: Hit"
     player = User.find( player_id )
-    player_cards = player.cards
     game = player.game
     game_card = game.cards.order( "random()" ).limit(1)
     player.cards << game.cards.delete( game_card )
-    p "GAME_CARD", game_card[0]
 
     GameCardJob.perform_later game_card[0]
   end
