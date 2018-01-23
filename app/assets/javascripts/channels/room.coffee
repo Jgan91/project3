@@ -7,6 +7,7 @@ App.room = App.cable.subscriptions.create "RoomChannel",
     console.log data
     $( "#messages" ).prepend data[ "message" ]
     $( "#players" ).html data[ "player" ]
+    $( "#game_cards" ).append data[ "game_card" ]
     if data[ "start_game" ]
       console.log data
       $( ".starting-hand" ).fadeIn()
@@ -39,4 +40,4 @@ $( document ).on "click", "[data-behavior~=room_speaker]", ( event ) ->
     console.log "User STAY"
     App.room.speak { "user_action": "stay" }
 
-    event.preventDefault()
+event.preventDefault()

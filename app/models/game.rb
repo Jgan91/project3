@@ -35,12 +35,14 @@ class Game < ApplicationRecord
     deck = CardsService.new.deck_of_cards_hash.map do |card|
       Card.find_or_create_by( value: card[ :value ], suit: card[ :suit ], image: card[ :image ] )
     end
-    self.cards = deck.shuffle
+    self.cards = deck
   end
 
   def deal_starting_hand
     find_players.each do |player|
-      2.times { player.cards << cards.delete( cards.order( "random()" ).limit(1) ) }
+      # 2.times { player.cards << cards.delete( cards.order( "random()" ).limit(1) ) }
+      2.times { player.cards << cards.delete( cards.limit(1) ) }
+      p "deal_starting_hand", player.cards
     end
   end
 
@@ -51,9 +53,9 @@ class Game < ApplicationRecord
     end
   end
 
-  def game_action
-    active_players = find_players
-    active_players.reject { |player| player.action == 2 }
-
-  end
+  # def game_action
+  #   active_players = find_players
+  #   active_players.reject { |player| player.action == 2 }
+  #
+  # end
 end

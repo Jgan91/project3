@@ -7,22 +7,22 @@ class User < ApplicationRecord
   belongs_to :game, required: false
   has_many :cards
 
-  def user_action( action )
+  def user_action( action, player_id )
     if action == "hit"
-      hit
+      hit( player_id )
     end
   end
 
-  def hit
-<<<<<<< HEAD
-
-=======
+  def hit( player_id )
     Message.create! content: "#{ username }: Hit"
-    p "Self:", self
-    self.cards << cards.delete( cards.order( "random()" ).limit(1) )
-    p self.cards
->>>>>>> a32a9bd6422acca1da5e874b9b1064bf45c87311
-    # current_user.cards << cards.delete( cards.order( "random()" ).limit(1) )
+    player = User.find( player_id )
+    player_cards = player.cards
+    game = player.game
+    game_card = game.cards.order( "random()" ).limit(1)
+    player.cards << game.cards.delete( game_card )
+    p "GAME_CARD", game_card[0]
+
+    GameCardJob.perform_later game_card[0]
   end
 
 end
