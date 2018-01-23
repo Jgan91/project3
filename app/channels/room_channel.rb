@@ -14,7 +14,8 @@ class RoomChannel < ApplicationCable::Channel
     client_action = data[ "message" ]
     p '*****************CLIENT_ACTION*****************', client_action
     @game = Game.find_by( started: false ) || Game.find( current_user.game.id )
-    current_user.user_action( client_action[ "user_action" ], current_user ) if client_action[ "user_action" ]
+    current_user.user_action( client_action[ "user_action" ] ) if client_action[ "user_action" ]
+
 
     if client_action["join"]
       @game.add_player( current_user )
