@@ -147,7 +147,7 @@ $( document ).ready( function () {
     if ( player1.gameOver ) { return };
     player1.hit();
     player1.checkGameOver();
-    render();1
+    render();
   });
 
   $( '.stay-player1' ).on( 'click', function () {

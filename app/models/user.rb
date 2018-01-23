@@ -7,4 +7,14 @@ class User < ApplicationRecord
   belongs_to :game, required: false
   has_many :cards
 
+  def user_action( action, player )
+    if action == "hit"
+      hit
+    end
+  end
+
+  def hit
+    current_user.cards << cards.delete( cards.order( "random()" ).limit(1) )
+  end
+
 end

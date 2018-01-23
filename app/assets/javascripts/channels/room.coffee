@@ -26,3 +26,17 @@ $( document ).on "click", "[data-behavior~=room_speaker]", ( event ) ->
     App.room.speak "start-game"
 
     event.preventDefault()
+
+$( document ).on "click", "[data-behavior~=room_speaker]", ( event ) ->
+  if event.target.id is "hit"
+    console.log "User HIT"
+    App.room.speak { "user_action": "hit" }
+
+    event.preventDefault()
+
+$( document ).on "click", "[data-behavior~=room_speaker]", ( event ) ->
+  if event.target.id is "stay"
+    console.log "User STAY"
+    App.room.speak { "user_action": "stay" }
+
+    event.preventDefault()
