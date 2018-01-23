@@ -13,8 +13,8 @@ class RoomChannel < ApplicationCable::Channel
   def speak(data)
     client_action = data[ "message" ]
     p '*****************CLIENT_ACTION*****************', client_action
-    @game = Game.find_by( started: false ) || Game.find( @current_user.game.id )
-    current_user.user_action( client_action[ "user_action" ] ) if client_action[ "user_action" ]
+    @game = Game.find_by( started: false ) || Game.find( current_user.game.id )
+    current_user.user_action( client_action[ "user_action" ], current_user ) if client_action[ "user_action" ]
 
     if client_action["join"]
       @game.add_player( current_user )
@@ -49,7 +49,15 @@ class RoomChannel < ApplicationCable::Channel
   end
 
   def game_play( game )
+    action = game.game_action
+    update_players( game )
 
+    game_play( game ) if action.is_a? Message
+    if action.is_a User?
+      broadcast user_id: action.id
+      Message.create! content: "#{ action.username }'s turn"
+      broadcast turn: "#{ action.id }"
+    end
   end
 
 end

@@ -51,5 +51,9 @@ class Game < ApplicationRecord
     end
   end
 
+  def game_action
+    active_players = find_players
+    active_players.reject { |player| player.action == 2 }
 
+  end
 end
