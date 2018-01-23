@@ -14,8 +14,13 @@ class RoomChannel < ApplicationCable::Channel
     client_action = data[ "message" ]
     p '*****************CLIENT_ACTION*****************', client_action
     @game = Game.find_by( started: false ) || Game.find( current_user.game.id )
+<<<<<<< HEAD
     current_user.user_action( client_action[ "user_action" ] ) if client_action[ "user_action" ]
 
+=======
+    p current_user.id
+    current_user.user_action( client_action[ "user_action" ], current_user.id ) if client_action[ "user_action" ]
+>>>>>>> 22487e1f32ceea4e6f5e4e07ac32910496de285b
 
     if client_action["join"]
       @game.add_player( current_user )
@@ -42,7 +47,7 @@ class RoomChannel < ApplicationCable::Channel
     update_players( game )
     broadcast start_game: "start_game"
     Message.create! content: "LET THE GAMES BEGIN!!!"
-    game_play( game )
+    # game_play( game )
   end
 
   def update_players( game )
@@ -53,7 +58,7 @@ class RoomChannel < ApplicationCable::Channel
     action = game.game_action
     update_players( game )
 
-    game_play( game ) if action.is_a? Message
+    # game_play( game ) if action.is_a? Message
     if action.is_a User?
       broadcast user_id: action.id
       Message.create! content: "#{ action.username }'s turn"
