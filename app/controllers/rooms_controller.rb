@@ -10,7 +10,7 @@ class RoomsController < ApplicationController
   end
 
   def join_or_create_game
-    if ( Game.last && !Game.last.started )
+    if Game.last && !Game.last.started
       Game.last
     else
       Game.create
