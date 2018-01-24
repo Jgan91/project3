@@ -119,8 +119,11 @@ class User < ApplicationRecord
           break
         else
           p "*******************All Hand values***************", filtered_players , filtered_players[i]
-          if filtered_players[i][ "hand_value" ] == filtered_players[ i + 1 ][ "hand_value" ]
+          if ( filtered_players[i][ "hand_value" ] == filtered_players[ i + 1 ][ "hand_value" ] )
             winners << filtered_players[i] << filtered_players[ i + 1 ]
+          else
+            winners << filtered_players[i]
+            break
           end
         end
         # if filtered_players.count == 1
