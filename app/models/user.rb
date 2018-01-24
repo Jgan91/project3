@@ -20,7 +20,7 @@ class User < ApplicationRecord
     game_card = game.cards.order( "random()" ).limit(1)
     player.cards << game.cards.delete( game_card )
 
-    GameCardJob.perform_later game_card[0]
+    GameCardJob.perform_later( game_card[0], player_id )
   end
 
 end
