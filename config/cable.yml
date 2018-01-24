@@ -6,5 +6,5 @@ test:
 
 production:
   adapter: redis
-  url: redis://localhost:6379/1
+  url: redis://redistogo:ae024c82ff6a3534054c8798b1c21813@soldierfish.redistogo.com:10644/
   channel_prefix: black_jack_production
