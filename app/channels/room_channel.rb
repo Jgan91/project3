@@ -3,6 +3,7 @@ class RoomChannel < ApplicationCable::Channel
   def subscribed
     stream_from "room_channel"
     stream_from current_user.id
+    current_user.cards.destroy_all
   end
 
   def unsubscribed

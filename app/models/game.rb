@@ -20,7 +20,7 @@ class Game < ApplicationRecord
   end
 
   def set_player_order
-    if ordered_players = []
+    if ordered_players == []
       new_order = players.shuffle
     else
       new_order = ordered_players.rotate(-1) if new_order[1] == ordered_players[1]
